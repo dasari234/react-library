@@ -1,5 +1,0 @@
-src
-node_modules
-*.stories.tsx
-*.test.tsx
-vite.config.ts

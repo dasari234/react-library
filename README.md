@@ -67,3 +67,12 @@ export default tseslint.config([
   },
 ])
 ```
+
+
+npm run build
+
+npm link
+npm run dev
+
+other project
+npm link react-shared-components
