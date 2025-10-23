@@ -1,27 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { UseScrollDirection, UseScrollPosition, UseScrollTriggerOptions } from "./types";
 
-interface ScrollDirection {
-  vertical: "up" | "down" | "none";
-  horizontal: "left" | "right" | "none";
-}
-
-interface ScrollPosition {
-  x: number;
-  y: number;
-  direction: ScrollDirection;
-  isAtTop: boolean;
-  isAtBottom: boolean;
-}
-
-interface UseScrollTriggerOptions {
-  threshold?: number; // px scroll to trigger header shadow
-  disableHysteresis?: boolean;
-  throttleMs?: number; 
-  showScrollTop?: boolean; // show “scroll to top” button
-  scrollTopThreshold?: number; // px scrolled before showing button
-  showScrollBottom?: boolean; // show “scroll to bottom” button
-  scrollBottomThreshold?: number; // px from bottom to show button
-}
 
 export const useScrollTrigger = ({
   threshold = 100,
@@ -32,7 +11,7 @@ export const useScrollTrigger = ({
   showScrollBottom = false,
   scrollBottomThreshold = 100,
 }: UseScrollTriggerOptions = {}) => {
-  const [scrollPosition, setScrollPosition] = useState<ScrollPosition>({
+  const [scrollPosition, setScrollPosition] = useState<UseScrollPosition>({
     x: 0,
     y: 0,
     direction: { vertical: "none", horizontal: "none" },
@@ -46,7 +25,7 @@ export const useScrollTrigger = ({
   const [showTopButton, setShowTopButton] = useState(false);
   const [showBottomButton, setShowBottomButton] = useState(false);
 
-  const getScrollDirection = useCallback((currentX: number, currentY: number): ScrollDirection => {
+  const getScrollDirection = useCallback((currentX: number, currentY: number): UseScrollDirection => {
     const { x: prevX, y: prevY } = prevPosition.current;
     return {
       vertical: currentY > prevY ? "down" : currentY < prevY ? "up" : "none",

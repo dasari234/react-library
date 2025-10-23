@@ -1,10 +1,7 @@
-interface FetchOptions extends RequestInit {
-    skipJsonParsing?: boolean;
-}
+import { UseFetchOptions } from "./types";
 export declare const useApi: <T>(defaultData?: T | null) => {
-    fetchData: (url: string, options?: FetchOptions) => Promise<T | Response>;
+    fetchData: (url: string, options?: UseFetchOptions) => Promise<T | Response>;
     data: T | null;
     loading: boolean;
     error: Error | null;
 };
-export {};

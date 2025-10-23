@@ -1,17 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { UseApiResult, UseFetchOptions } from "./types";
 
-interface ApiState<T> {
-  data: T | null;
-  loading: boolean;
-  error: Error | null;
-}
 
-interface FetchOptions extends RequestInit {
-  skipJsonParsing?: boolean; 
-}
+
 
 export const useApi = <T>(defaultData: T | null = null) => {
-  const [state, setState] = useState<ApiState<T>>({
+  const [state, setState] = useState<UseApiResult<T>>({
     data: defaultData,
     loading: false,
     error: null,
@@ -20,7 +14,7 @@ export const useApi = <T>(defaultData: T | null = null) => {
   const abortController = useRef<AbortController | null>(null);
 
   const fetchData = useCallback(
-    async (url: string, options?: FetchOptions): Promise<T | Response> => {
+    async (url: string, options?: UseFetchOptions): Promise<T | Response> => {
       // Cancel previous request if still running
       if (abortController.current) {
         abortController.current.abort();

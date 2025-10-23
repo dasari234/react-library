@@ -1,16 +1,4 @@
-interface ScrollDirection {
-    vertical: "up" | "down" | "none";
-    horizontal: "left" | "right" | "none";
-}
-interface UseScrollTriggerOptions {
-    threshold?: number;
-    disableHysteresis?: boolean;
-    throttleMs?: number;
-    showScrollTop?: boolean;
-    scrollTopThreshold?: number;
-    showScrollBottom?: boolean;
-    scrollBottomThreshold?: number;
-}
+import { UseScrollDirection, UseScrollTriggerOptions } from "./types";
 export declare const useScrollTrigger: ({ threshold, disableHysteresis, throttleMs, showScrollTop, scrollTopThreshold, showScrollBottom, scrollBottomThreshold, }?: UseScrollTriggerOptions) => {
     trigger: boolean;
     scrollTo: (options: ScrollToOptions) => void;
@@ -18,8 +6,7 @@ export declare const useScrollTrigger: ({ threshold, disableHysteresis, throttle
     showBottomButton: boolean;
     x: number;
     y: number;
-    direction: ScrollDirection;
+    direction: UseScrollDirection;
     isAtTop: boolean;
     isAtBottom: boolean;
 };
-export {};
