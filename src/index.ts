@@ -5,5 +5,7 @@ import './styles/globals.css';
 export * from './components';
 
 // Export all hooks
+export * from './hooks';
 
 // Export all lib utilities
+export * from './lib';
