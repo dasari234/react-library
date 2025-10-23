@@ -95,8 +95,9 @@ export const useApi = <T>(defaultData: T | null = null) => {
 // }, []);
 
 
-// const { data, loading, error, fetchData } = useApi<{ users: string[] }>();
-
-// useEffect(() => {
-//   fetchData("/api/users").catch(console.error);
-// }, []);
+// POST example
+// await fetchData("/api/users", {
+//   method: "POST",
+//   headers: { "Content-Type": "application/json" },
+//   body: JSON.stringify({ name: "John" }),
+// });
