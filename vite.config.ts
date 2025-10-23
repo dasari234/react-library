@@ -1,17 +1,26 @@
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
-import { fileURLToPath } from 'url';
 import { defineConfig } from 'vite';
-
-const __dirname = fileURLToPath(new URL('.', import.meta.url));
+import dts from 'vite-plugin-dts';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    dts({
+      include: ['src'],
+      outDir: 'dist',
+      insertTypesEntry: true,
+    })
+  ],
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'ReactSharedComponents',
-      fileName: (format) => `react-shared-components.${format}.js`,
+      fileName: (format) => {
+        if (format === 'es') return 'react-shared-components.es.js';
+        if (format === 'umd') return 'react-shared-components.umd.js';
+        return `react-shared-components.${format}.js`;
+      },
       formats: ['es', 'umd']
     },
     rollupOptions: {
@@ -20,16 +29,19 @@ export default defineConfig({
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM'
+        },
+        assetFileNames: (assetInfo) => {
+          const name = assetInfo.name ?? 'asset';
+          if (name === 'style.css') return 'react-shared-components.css';
+          return name;
         }
       }
     },
+    cssCodeSplit: true,
     sourcemap: true,
     emptyOutDir: true,
   },
   css: {
     postcss: './postcss.config.js'
-  },
-  optimizeDeps: {
-    exclude: ['react', 'react-dom']
   }
 });

@@ -3,31 +3,16 @@
   "version": "1.0.0",
   "description": "shared React components with TypeScript and Tailwind CSS",
   "type": "module",
-  "main": "dist/react-shared-components.umd.js",
-  "module": "dist/react-shared-components.es.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/react-shared-components.umd.js",
+  "module": "./dist/react-shared-components.es.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/react-shared-components.js",
-      "require": "./dist/react-shared-components.umd.cjs",
+      "import": "./dist/react-shared-components.es.js",
+      "require": "./dist/react-shared-components.umd.js",
       "types": "./dist/index.d.ts"
     },
-    "./components/*": {
-      "import": "./dist/components/*.js",
-      "require": "./dist/components/*.cjs",
-      "types": "./dist/components/*.d.ts"
-    },
-    "./hooks/*": {
-      "import": "./dist/hooks/*.js",
-      "require": "./dist/hooks/*.cjs",
-      "types": "./dist/hooks/*.d.ts"
-    },
-    "./lib/*": {
-      "import": "./dist/lib/*.js",
-      "require": "./dist/lib/*.cjs",
-      "types": "./dist/lib/*.d.ts"
-    },
-    "./style.css": "./dist/style.css"
+    "./style.css": "./dist/react-shared-components.css"
   },
   "files": [
     "dist"
