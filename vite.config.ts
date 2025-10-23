@@ -1,22 +1,16 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import dts from 'vite-plugin-dts'
-import { resolve } from 'path'
+import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
+import { defineConfig } from 'vite';
+const __dirname = new URL('.', import.meta.url).pathname;
 
 export default defineConfig({
-  plugins: [
-    react(),
-    dts({
-      rollupTypes: true,
-      include: ['src'],
-      exclude: ['**/*.stories.tsx', '**/*.test.tsx']
-    })
-  ],
+  plugins: [react()],
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'ReactUILibrary',
-      fileName: (format) => `react-ui-library.${format}.js`
+      name: 'ReactSharedComponents',
+      fileName: (format) => `react-shared-components.${format}.js`,
+      formats: ['es', 'umd']
     },
     rollupOptions: {
       external: ['react', 'react-dom'],
@@ -26,6 +20,14 @@ export default defineConfig({
           'react-dom': 'ReactDOM'
         }
       }
-    }
+    },
+    sourcemap: true,
+    emptyOutDir: true,
+  },
+  css: {
+    postcss: './postcss.config.js'
+  },
+  optimizeDeps: {
+    exclude: ['react', 'react-dom']
   }
-})
+});

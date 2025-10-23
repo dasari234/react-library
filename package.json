@@ -1,15 +1,41 @@
 {
-  "name": "react-ui-library",
+  "name": "react-shared-components",
   "version": "1.0.0",
-  "main": "dist/react-ui-library.umd.js",
-  "module": "dist/react-ui-library.es.js",
+  "description": "shared React components with TypeScript and Tailwind CSS",
+   "type": "module",
+  "main": "dist/react-shared-components.umd.js",
+  "module": "dist/react-shared-components.es.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/react-shared-components.js",
+      "require": "./dist/react-shared-components.umd.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./components/*": {
+      "import": "./dist/components/*.js",
+      "require": "./dist/components/*.cjs",
+      "types": "./dist/components/*.d.ts"
+    },
+    "./hooks/*": {
+      "import": "./dist/hooks/*.js",
+      "require": "./dist/hooks/*.cjs",
+      "types": "./dist/hooks/*.d.ts"
+    },
+    "./lib/*": {
+      "import": "./dist/lib/*.js",
+      "require": "./dist/lib/*.cjs",
+      "types": "./dist/lib/*.d.ts"
+    }
+  },
   "files": [
     "dist"
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build && npm run build:types",
+    "build:types": "tsc --emitDeclarationOnly --outDir dist",
+    "prepublishOnly": "npm run build",
     "preview": "vite preview",
     "changeset": "changeset",
     "version-packages": "changeset version",
@@ -31,5 +57,18 @@
     "typescript": "^5.8.3",
     "vite": "^7.0.5",
     "vite-plugin-dts": "^4.5.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dasari234/react-library.git"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "tailwind",
+    "components",
+    "hooks"
+  ],
+  "author": "Dasari",
+  "license": "MIT"
 }
