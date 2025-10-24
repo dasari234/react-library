@@ -12,7 +12,10 @@
       "require": "./dist/react-shared-components.umd.js",
       "types": "./dist/index.d.ts"
     },
-    "./style.css": "./dist/react-shared-components.css"
+    "./style.css": {
+      "import": "./dist/index.css",
+      "require": "./dist/index.css"
+    }
   },
   "files": [
     "dist"
