@@ -5,7 +5,9 @@ import dts from 'vite-plugin-dts';
 
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      jsxRuntime: 'automatic',
+    }),
     dts({
       include: ['src'],
       outDir: 'dist',
@@ -24,11 +26,12 @@ export default defineConfig({
       formats: ['es', 'umd']
     },
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: ['react', 'react-dom', 'react/jsx-runtime'],
       output: {
         globals: {
           react: 'React',
-          'react-dom': 'ReactDOM'
+          'react-dom': 'ReactDOM',
+          'react/jsx-runtime': 'jsxRuntime'
         },
         assetFileNames: (assetInfo) => {
           const name = assetInfo.name ?? 'asset';
