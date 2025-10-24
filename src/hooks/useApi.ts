@@ -3,7 +3,6 @@ import { UseApiResult, UseFetchOptions } from "./types";
 
 
 
-
 export const useApi = <T>(defaultData: T | null = null) => {
   const [state, setState] = useState<UseApiResult<T>>({
     data: defaultData,

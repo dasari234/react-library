@@ -76,3 +76,10 @@ npm run dev
 
 other project
 npm link react-shared-components
+
+npm install dasari234/react-library#main
+
+git branch -a
+
+# Check remote branches
+git ls-remote --heads origin

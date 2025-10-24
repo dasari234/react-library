@@ -35,7 +35,7 @@ var q = {};
  */
 var Ye;
 function mr() {
-  return Ye || (Ye = 1, process.env.NODE_ENV !== "production" && function() {
+  return Ye || (Ye = 1, process.env.NODE_ENV !== "production" && (function() {
     var i = Le, v = Symbol.for("react.element"), l = Symbol.for("react.portal"), f = Symbol.for("react.fragment"), w = Symbol.for("react.strict_mode"), E = Symbol.for("react.profiler"), g = Symbol.for("react.provider"), m = Symbol.for("react.context"), b = Symbol.for("react.forward_ref"), d = Symbol.for("react.suspense"), u = Symbol.for("react.suspense_list"), R = Symbol.for("react.memo"), O = Symbol.for("react.lazy"), N = Symbol.for("react.offscreen"), z = Symbol.iterator, Q = "@@iterator";
     function ee(e) {
       if (e === null || typeof e != "object")
@@ -621,7 +621,7 @@ React keys must be passed directly to JSX without using spread:
     }
     var fr = cr, dr = lr;
     q.Fragment = f, q.jsx = fr, q.jsxs = dr;
-  }()), q;
+  })()), q;
 }
 var We;
 function br() {
