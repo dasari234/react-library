@@ -18,8 +18,10 @@
     "dist"
   ],
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --config vite.demo.ts",
     "build": "vite build && npm run build:types",
+    "build:demo": "vite build --config vite.demo.ts",
+    "preview:demo": "vite preview --config vite.demo.ts",
     "build:types": "tsc --emitDeclarationOnly --outDir dist",
     "prepublishOnly": "npm run build",
     "preview": "vite preview"

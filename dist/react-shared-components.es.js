@@ -5,12 +5,12 @@ const P = ({
   variant: n = "primary",
   size: r = "md",
   isLoading: t = !1,
-  disabled: d,
+  disabled: u,
   className: l = "",
   ...s
 }) => {
   const i = "inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2", w = {
-    primary: "bg-primary-500 hover:bg-primary-600 text-white focus:ring-primary-500 disabled:bg-gray-400",
+    primary: "bg-blue-500 hover:bg-blue-600 text-white focus:ring-blue-500 disabled:bg-gray-400",
     secondary: "bg-gray-200 hover:bg-gray-300 text-gray-900 focus:ring-gray-500 disabled:bg-gray-100",
     danger: "bg-red-500 hover:bg-red-600 text-white focus:ring-red-500 disabled:bg-gray-400",
     ghost: "bg-transparent hover:bg-gray-100 text-gray-700 focus:ring-gray-500 disabled:text-gray-400"
@@ -28,7 +28,7 @@ const P = ({
     "button",
     {
       className: a,
-      disabled: d || t,
+      disabled: u || t,
       ...s,
       children: [
         t && /* @__PURE__ */ S("svg", { className: "animate-spin -ml-1 mr-2 h-4 w-4 text-current", fill: "none", viewBox: "0 0 24 24", children: [
@@ -44,7 +44,7 @@ const P = ({
   title: n,
   actions: r,
   padding: t = "md",
-  className: d = "",
+  className: u = "",
   ...l
 }) => {
   const i = [
@@ -55,7 +55,7 @@ const P = ({
       md: "p-6",
       lg: "p-8"
     }[t],
-    d
+    u
   ].join(" ");
   return /* @__PURE__ */ S("div", { className: i, ...l, children: [
     (n || r) && /* @__PURE__ */ S("div", { className: "flex items-center justify-between mb-4 pb-4 border-b border-gray-100", children: [
@@ -69,7 +69,7 @@ const P = ({
     data: e,
     loading: !1,
     error: null
-  }), t = E(null), d = f(
+  }), t = E(null), u = f(
     async (l, s) => {
       t.current && t.current.abort(), t.current = new AbortController();
       const { skipJsonParsing: i, ...w } = s || {};
@@ -82,7 +82,7 @@ const P = ({
         if (!o.ok)
           throw new Error(`HTTP error! status: ${o.status}`);
         const a = i ? o : await o.json();
-        return r(i ? (p) => ({ ...p, loading: !1, error: null }) : { data: a, loading: !1, error: null }), a;
+        return r(i ? (b) => ({ ...b, loading: !1, error: null }) : { data: a, loading: !1, error: null }), a;
       } catch (o) {
         throw typeof o == "object" && o !== null && "name" in o && o.name === "AbortError" ? (console.warn("Request aborted:", l), r((a) => ({ ...a, loading: !1 })), new Error("Request aborted")) : (r((a) => ({
           ...a,
@@ -97,7 +97,7 @@ const P = ({
     t.current?.abort();
   }, []), {
     ...n,
-    fetchData: d
+    fetchData: u
   };
 }, J = (e, n) => {
   const [r, t] = m(n);
@@ -109,7 +109,7 @@ const P = ({
       console.warn(`Error reading localStorage key "${e}":`, s);
     }
   }, [e]);
-  const d = f((s) => {
+  const u = f((s) => {
     try {
       const i = s instanceof Function ? s(r) : s;
       t(i), window.localStorage.setItem(e, JSON.stringify(i));
@@ -123,13 +123,13 @@ const P = ({
       console.warn(`Error removing localStorage key "${e}":`, s);
     }
   }, [e, n]);
-  return { value: r, setValue: d, removeValue: l };
+  return { value: r, setValue: u, removeValue: l };
 }, R = ({
   threshold: e = 100,
   disableHysteresis: n = !1,
   throttleMs: r = 50,
   showScrollTop: t = !0,
-  scrollTopThreshold: d = 300,
+  scrollTopThreshold: u = 300,
   showScrollBottom: l = !1,
   scrollBottomThreshold: s = 100
 } = {}) => {
@@ -139,31 +139,31 @@ const P = ({
     direction: { vertical: "none", horizontal: "none" },
     isAtTop: !0,
     isAtBottom: !1
-  }), o = E({ x: 0, y: 0 }), a = E(null), [p, T] = m(!1), [B, j] = m(!1), [A, z] = m(!1), N = f((u, c) => {
-    const { x: b, y: x } = o.current;
+  }), o = E({ x: 0, y: 0 }), a = E(null), [b, T] = m(!1), [B, j] = m(!1), [A, z] = m(!1), N = f((d, c) => {
+    const { x: p, y: x } = o.current;
     return {
       vertical: c > x ? "down" : c < x ? "up" : "none",
-      horizontal: u > b ? "right" : u < b ? "left" : "none"
+      horizontal: d > p ? "right" : d < p ? "left" : "none"
     };
   }, []), g = f(() => {
     a.current === null && (a.current = window.setTimeout(() => {
-      const u = window.scrollX, c = window.scrollY, b = N(u, c), x = c === 0, H = window.innerHeight + c >= document.documentElement.scrollHeight;
-      w({ x: u, y: c, direction: b, isAtTop: x, isAtBottom: H });
+      const d = window.scrollX, c = window.scrollY, p = N(d, c), x = c === 0, H = window.innerHeight + c >= document.documentElement.scrollHeight;
+      w({ x: d, y: c, direction: p, isAtTop: x, isAtBottom: H });
       let v;
-      if (n ? v = c > e : v = b.vertical === "down" && c > e ? !0 : c <= e ? !1 : p, T((y) => y === v ? y : v), t && j(c > d), l) {
+      if (n ? v = c > e : v = p.vertical === "down" && c > e ? !0 : c <= e ? !1 : b, T((y) => y === v ? y : v), t && j(c > u), l) {
         const y = document.documentElement.scrollHeight - (window.innerHeight + c);
         z(y > s);
       }
-      o.current = { x: u, y: c }, a.current = null;
+      o.current = { x: d, y: c }, a.current = null;
     }, r));
   }, [
     n,
     N,
     e,
     r,
-    p,
+    b,
     t,
-    d,
+    u,
     l,
     s
   ]);
@@ -173,12 +173,12 @@ const P = ({
         window.removeEventListener("scroll", g), window.removeEventListener("resize", g), a.current && window.clearTimeout(a.current);
       };
   }, [g]);
-  const D = f((u) => {
-    typeof window < "u" && window.scrollTo({ behavior: "smooth", ...u });
+  const D = f((d) => {
+    typeof window < "u" && window.scrollTo({ behavior: "smooth", ...d });
   }, []);
   return {
     ...i,
-    trigger: p,
+    trigger: b,
     scrollTo: D,
     showTopButton: B,
     showBottomButton: A
